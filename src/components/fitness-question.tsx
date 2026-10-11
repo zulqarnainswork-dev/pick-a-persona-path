@@ -29,7 +29,7 @@ export function FitnessQuestion({ index, gender, goal }: { index: number; gender
   const art = (image: GoalId | 'equipment') => image === 'equipment' ? (gender === 'female' ? femaleEquipment : maleEquipment) : goalImages[gender][image];
   const back = () => {
     if (index === 0) { void navigate({ to: '/next', search: { gender, goal } }); return; }
-    if (index === 1) { void navigate({ to: '/continue/', search: { gender, goal } }); return; }
+    if (index === 1) { void navigate({ to: '/continue', search: { gender, goal } }); return; }
     void navigate({ to: '/continue/$step', params: { step: questions[index - 1]?.id ?? 'equipment' }, search: { gender, goal } });
   };
   const numeric = question.numeric;
@@ -86,7 +86,7 @@ export function QuestionnaireComplete({ gender, goal }: { gender: Gender; goal: 
   return <main className="goal-page question-page">
     <header className="goal-header"><Button variant="ghost" size="icon" className="goal-back" asChild><Link to="/continue/$step" params={{ step: 'time' }} search={{ gender, goal }} aria-label="Go back" title="Go back"><ArrowLeft /></Link></Button><div className="question-step">YOUR FITNESS PROFILE</div></header>
     <div className="question-complete"><span className="question-complete-check"><Check /></span><h1>{complete ? 'All questions answered' : 'Complete your profile'}</h1><img src={goalImages[gender][goal]} alt="Fitness character" width={384} height={512} /><h2>{selected?.label}</h2>
-      {complete ? <><p className="question-complete-detail">{answers['time']} {answers['time'] === '60' ? 'minutes or more' : 'minutes'} a day</p><Button variant="outline" asChild><Link to="/continue/" search={{ gender, goal }}>Review answers</Link></Button></> : <Button variant="next" asChild><Link to="/continue/" search={{ gender, goal }}>Continue</Link></Button>}
+      {complete ? <><p className="question-complete-detail">{answers['time']} {answers['time'] === '60' ? 'minutes or more' : 'minutes'} a day</p><Button variant="outline" asChild><Link to="/continue" search={{ gender, goal }}>Review answers</Link></Button></> : <Button variant="next" asChild><Link to="/continue" search={{ gender, goal }}>Continue</Link></Button>}
     </div>
   </main>;
 }
