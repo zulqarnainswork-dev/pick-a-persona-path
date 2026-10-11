@@ -303,6 +303,13 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .question-complete > img { width: 200px; height: 240px; object-fit: cover; margin: auto; }
 .question-complete h2 { font-size: 23px; font-weight: 900; margin-top: 15px; }
 .question-complete-detail { color: var(--goal-description); margin: 8px 0 24px; }
+@media (max-width: 599px) {
+  .question-age .question-body, .question-height .question-body, .question-weight .question-body { padding: 16px 0 8px; }
+  .question-portrait { width: 120px; height: 135px; margin-bottom: 10px; }
+  .question-units { margin-bottom: 10px; }
+  .measurement-value input { height: 64px; font-size: 44px; }
+  .measurement-hint { margin-top: 8px; margin-bottom: 0; }
+}
 @media (min-width: 600px) {
   .question-page { padding-top: 42px; min-height: min(100svh, 1000px); }
   .question-intro h1 { font-size: 40px; }
