@@ -167,7 +167,7 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .gender-card-size { width: 100%; height: 260px; padding: 0 0 16px; }
 .gender-card:hover { border-color: var(--primary); box-shadow: var(--character-shadow-active); transform: translateY(-3px); }
 .gender-card:focus-visible { outline: 3px solid var(--primary); outline-offset: 5px; }
-.character-image { position: absolute; top: -52px; left: 0; width: 100%; height: 257px; pointer-events: none; mask-image: linear-gradient(to bottom, var(--foreground) 72%, transparent 100%); }
+.character-image { position: absolute; top: -52px; left: 0; width: 100%; height: 257px; overflow: hidden; pointer-events: none; mask-image: linear-gradient(to bottom, var(--foreground) 72%, transparent 100%); }
 .character-image img { position: absolute; top: 0; left: -17%; width: 134%; max-width: none; height: auto; }
 .character-label { position: relative; font-size: 24px; line-height: 1.4; font-weight: 1000; }
 .next-page { padding-top: 35px; }

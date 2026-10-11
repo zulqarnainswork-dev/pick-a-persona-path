@@ -3,7 +3,7 @@ import { ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/next")({
-  validateSearch: (search: Record<string, unknown>): { gender: "male" | "female" } => ({ gender: search.gender === "female" ? "female" : "male" }),
+  validateSearch: (search: Record<string, unknown>): { gender: "male" | "female" } => ({ gender: search['gender'] === "female" ? "female" : "male" }),
   head: () => ({ meta: [
     { title: "Your Selection — Fitness Journey" },
     { name: "description", content: "Your selected fitness profile." },
