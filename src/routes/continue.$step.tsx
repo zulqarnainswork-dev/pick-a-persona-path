@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { FitnessQuestion, QuestionnaireComplete, questionHead } from '@/components/fitness-question';
+import { FitnessQuestion, questionHead } from '@/components/fitness-question';
+import { FitnessPlan } from '@/components/fitness-plan';
 import { questions } from '@/lib/questionnaire';
 
 export const Route = createFileRoute('/continue/$step')({
@@ -10,6 +11,6 @@ export const Route = createFileRoute('/continue/$step')({
 function QuestionPage() {
   const { step } = Route.useParams();
   const { gender, goal } = Route.useSearch();
-  if (step === 'complete') return <QuestionnaireComplete gender={gender} goal={goal} />;
+  if (step === 'complete') return <FitnessPlan gender={gender} goal={goal} />;
   return <FitnessQuestion key={step} index={questions.findIndex(question => question.id === step)} gender={gender} goal={goal} />;
 }

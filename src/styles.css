@@ -324,3 +324,87 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
   .question-banner { width: 160px; height: 155px; }
 }
 @media (prefers-reduced-motion: reduce) { .question-choice { transition: none; } }
+
+:root {
+  --plan-canvas: oklch(0.98 0.003 270);
+  --plan-teal: oklch(0.64 0.12 179);
+  --plan-aqua: oklch(0.93 0.045 185);
+  --plan-aqua-soft: oklch(0.96 0.025 185);
+  --plan-rest: oklch(0.95 0.035 145);
+  --plan-summary: oklch(0.94 0.015 263);
+  --plan-ink: oklch(0.13 0 0);
+  --plan-muted: oklch(0.54 0.005 270);
+  --plan-on-teal: oklch(1 0 0);
+  --plan-line: oklch(0.86 0.003 270);
+  --plan-shadow: 0 5px 10px oklch(0.3 0.07 179 / 18%);
+}
+.plan-page { width: min(100%, 570px); min-height: 100svh; margin: auto; padding: 24px 18px 36px; background: var(--plan-canvas); color: var(--plan-ink); }
+.plan-heading { display: flex; align-items: center; gap: 12px; margin: 0 0 17px -5px; }
+.plan-heading > span { font-size: 11px; font-weight: 900; color: var(--plan-muted); }
+.plan-page > h1 { font-size: 29px; font-weight: 1000; line-height: 1.18; margin: 0 0 24px; overflow-wrap: anywhere; }
+.plan-page > h1 > span { display: block; font-size: 16px; font-weight: 700; color: var(--plan-muted); margin-top: 7px; }
+.plan-summary { position: relative; height: 144px; border-radius: 20px; background: var(--plan-summary); overflow: hidden; }
+.plan-summary-copy { position: relative; z-index: 1; width: 67%; padding: 20px 17px; }
+.plan-intensity { display: flex; gap: 4px; color: var(--plan-line); }
+.plan-intensity svg { width: 18px; height: 18px; fill: currentColor; }
+.plan-intensity .is-active { color: var(--plan-teal); }
+.plan-summary h2 { font-size: 23px; font-weight: 1000; margin: 6px 0 13px; line-height: 1.2; }
+.plan-summary > img { position: absolute; right: -7px; bottom: 0; width: 37%; height: 100%; object-fit: cover; object-position: center 28%; mix-blend-mode: multiply; mask-image: linear-gradient(to right, transparent, var(--plan-ink) 20%); }
+.plan-finished { display: flex; align-items: center; gap: 9px; font-size: 12px; white-space: nowrap; }
+.plan-finished progress { width: 70px; height: 6px; }
+.plan-finished progress, .plan-loading-track { appearance: none; border: 0; border-radius: 10px; overflow: hidden; background: var(--background); }
+.plan-finished progress::-webkit-progress-bar { background: var(--background); }
+.plan-finished progress::-webkit-progress-value, .plan-loading-track::-webkit-progress-value { background: var(--plan-teal); }
+.plan-finished progress::-moz-progress-bar, .plan-loading-track::-moz-progress-bar { background: var(--plan-teal); }
+.plan-stage > h2 { display: flex; align-items: baseline; gap: 10px; font-size: 25px; font-weight: 1000; margin: 29px 0 32px; line-height: 1.2; flex-wrap: wrap; }
+.plan-stage > h2 > span { font-size: 17px; font-weight: 800; color: var(--plan-muted); }
+.plan-timeline { list-style: none; margin: 0; padding: 0; }
+.plan-day-row { position: relative; padding-left: 35px; padding-bottom: 31px; }
+.plan-day-row::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; border-left: 2px dashed var(--plan-line); }
+.plan-timeline-dot { position: absolute; top: 50%; margin-top: -25px; left: 0; width: 23px; height: 23px; border: 4px solid var(--plan-line); border-radius: 50%; background: var(--plan-canvas); z-index: 1; }
+.is-current .plan-timeline-dot { border-color: var(--plan-teal); }
+.plan-day { position: relative; height: 155px; border-radius: 22px; background: var(--plan-aqua); isolation: isolate; }
+.plan-day::before { content: ''; position: absolute; inset: 0; background: var(--plan-aqua-soft); clip-path: polygon(0 70%, 35% 85%, 100% 35%, 100% 65%, 30% 100%, 0 90%); border-radius: inherit; z-index: -1; }
+.plan-day-copy { position: relative; z-index: 2; padding: 26px 20px; width: 61%; }
+.plan-day h3 { margin: 0; font-size: 29px; font-weight: 1000; line-height: 1.15; }
+.plan-day p { margin: 12px 0 0; font-size: 13px; font-weight: 700; }
+.plan-day > img { position: absolute; right: 1px; bottom: 0; width: 47%; height: calc(100% + 17px); object-fit: contain; object-position: bottom; z-index: 1; mask-image: linear-gradient(to bottom, var(--plan-ink) 83%, transparent 100%); }
+.plan-day-current { height: 226px; background: var(--plan-teal); color: var(--plan-on-teal); }
+.plan-day-current::before { background: var(--plan-on-teal); opacity: 0.06; }
+.plan-day-current > img { height: 186px; bottom: 53px; width: 47%; }
+.plan-start-button { position: absolute; bottom: 17px; left: 16px; width: calc(100% - 32px); height: 49px; border-radius: 30px; background: var(--plan-on-teal); color: var(--plan-ink); box-shadow: var(--plan-shadow); z-index: 3; font-size: 23px; font-weight: 1000; padding: 0 18px; }
+.plan-start-button > span { position: absolute; right: 15px; display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: var(--plan-ink); color: var(--plan-on-teal); }
+.plan-start-button > span svg { width: 20px; height: 20px; }
+.plan-day-rest { background: var(--plan-rest); }
+.plan-day-rest::before { display: none; }
+.plan-rest-leaf { color: var(--plan-teal); margin-top: 12px; width: 22px; height: 22px; }
+.plan-end { display: flex; justify-content: center; gap: 10px; color: var(--plan-muted); font-size: 14px; padding: 10px 0; }
+.plan-loading { min-height: 100svh; width: min(100%, 570px); margin: auto; padding: 45px 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.plan-loading > img { width: 150px; height: 195px; object-fit: contain; margin-bottom: 24px; }
+.plan-loading h1 { font-size: 28px; font-weight: 1000; line-height: 1.2; margin: 0; }
+.plan-loading > p { color: var(--plan-muted); font-size: 15px; margin: 12px 0 25px; }
+.plan-loading-number { font-size: 64px; line-height: 1.2; font-weight: 1000; color: var(--plan-teal); font-variant-numeric: tabular-nums; width: 200px; }
+.plan-loading-number > span { font-size: 27px; }
+.plan-loading-track { width: 100%; max-width: 300px; height: 8px; margin: 14px 0 26px; background: var(--plan-aqua); }
+.plan-loading-track::-webkit-progress-bar { background: var(--plan-aqua); }
+.plan-loading-checks { display: flex; flex-direction: column; gap: 12px; text-align: left; font-size: 14px; color: var(--plan-muted); }
+.plan-loading-checks > span { display: flex; gap: 10px; align-items: center; }
+.plan-loading-checks svg { width: 17px; height: 17px; color: var(--plan-teal); }
+.plan-loading-dot { width: 17px; height: 17px; border: 2px solid var(--plan-line); border-radius: 50%; }
+@media (min-width: 600px) {
+  .plan-page { padding: 32px 25px 48px; }
+  .plan-page > h1 { font-size: 36px; }
+  .plan-summary { height: 170px; }
+  .plan-summary-copy { padding: 25px; }
+  .plan-summary h2 { font-size: 28px; }
+  .plan-finished { font-size: 15px; }
+  .plan-finished progress { width: 105px; }
+  .plan-day-row { padding-left: 45px; padding-bottom: 40px; }
+  .plan-day { height: 195px; }
+  .plan-day-copy { padding: 32px 27px; }
+  .plan-day h3 { font-size: 38px; }
+  .plan-day p { font-size: 16px; }
+  .plan-day-current { height: 270px; }
+  .plan-day-current > img { height: 235px; bottom: 50px; }
+  .plan-start-button { height: 56px; font-size: 28px; }
+}

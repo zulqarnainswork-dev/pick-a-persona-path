@@ -21,6 +21,7 @@ const buttonVariants = cva(
         next: "goal-next-button",
         answer: "question-choice",
         unit: "question-unit",
+        planStart: "plan-start-button",
       },
       size: {
         default: "h-9 px-4 py-2",
