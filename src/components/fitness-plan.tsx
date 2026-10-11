@@ -58,6 +58,6 @@ export function FitnessPlan({ gender, goal }: { gender: Gender; goal: GoalId }) 
       </li>)}</ol>
     </section>)}
     <div className="plan-end"><ListChecks /><span>Your 30-day journey</span></div>
-    <Dialog open={open} onOpenChange={setOpen}><DialogContent showCloseButton={false}><DialogHeader><DialogTitle>Day 1</DialogTitle><DialogDescription>Your exercise routine is not available yet.</DialogDescription></DialogHeader><Button variant="outline" onClick={() => setOpen(false)}><X />Close</Button></DialogContent></Dialog>
+    <Dialog open={open} onOpenChange={setOpen}><DialogContent><DialogHeader><DialogTitle>Day 1</DialogTitle><DialogDescription>Your exercise routine is not available yet.</DialogDescription></DialogHeader><Button variant="outline" onClick={() => setOpen(false)}><X />Back to plan</Button></DialogContent></Dialog>
   </main>;
 }

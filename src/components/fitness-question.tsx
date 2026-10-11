@@ -11,8 +11,8 @@ import maleEquipment from '@/assets/male-equipment.jpg';
 import femaleEquipment from '@/assets/female-equipment.jpg';
 
 export function questionHead(question?: Question) {
-  const title = `${question?.section ?? 'Your Fitness Profile'} — Fitness Journey`;
-  const description = question ? `${question.title} ${question.description}.` : 'Your personal fitness profile questions are complete.';
+  const title = `${question?.title ?? 'Your 30-Day Plan'} — Fitness Journey`;
+  const description = question ? `${question.title} ${question.description}.` : 'Your goal-focused 30-day fitness calendar with weekly rest days.';
   return { meta: [{ title }, { name: 'description', content: description }, { property: 'og:title', content: title }, { property: 'og:description', content: description }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' }] };
 }
 
