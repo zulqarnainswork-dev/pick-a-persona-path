@@ -12,3 +12,7 @@
 - [x] Add final Next loading from 1–100% and a profile-matched overview.
 - [x] Design 30 illustrated days with weekly rest and no durations or exercise routines.
 - [x] Verify both complete questionnaire flows and plan display.
+\n+# Unique character poses
+- [ ] Replace reused pictures with distinct poses while preserving character identity.
+- [ ] Show complete characters across onboarding and all 30 day cards.
+- [ ] Verify unique image assignments and both profile flows.
