@@ -9,6 +9,6 @@
 - [x] Verify both profile flows, numeric fields, health choices, and final time selection.
 
 # 30-day plan overview
-- [ ] Add final Next loading from 1–100% and a profile-matched overview.
-- [ ] Design 30 illustrated days with weekly rest and no durations or exercise routines.
-- [ ] Verify both complete questionnaire flows and plan display.
+- [x] Add final Next loading from 1–100% and a profile-matched overview.
+- [x] Design 30 illustrated days with weekly rest and no durations or exercise routines.
+- [x] Verify both complete questionnaire flows and plan display.
