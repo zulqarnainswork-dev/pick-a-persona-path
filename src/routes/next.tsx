@@ -47,7 +47,7 @@ function NextPage() {
       <footer className="goal-footer">
         <Button variant="next" disabled={!selected} onClick={() => {
           if (!selected) return;
-          void navigate({ to: "/continue", search: { gender, goal: selected } });
+          void navigate({ to: "/continue/", search: { gender, goal: selected } });
         }}>Next</Button>
       </footer>
     </main>
