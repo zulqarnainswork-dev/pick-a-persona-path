@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContinueRouteImport } from './routes/continue'
 import { Route as NextRouteImport } from './routes/next'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContinueRoute = ContinueRouteImport.update({
+  id: '/continue',
+  path: '/continue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NextRoute = NextRouteImport.update({
@@ -25,27 +31,31 @@ const NextRoute = NextRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/continue': typeof ContinueRoute
   '/next': typeof NextRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/continue': typeof ContinueRoute
   '/next': typeof NextRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/continue': typeof ContinueRoute
   '/next': typeof NextRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/next'
+  fullPaths: '/' | '/continue' | '/next'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/next'
-  id: '__root__' | '/' | '/next'
+  to: '/' | '/continue' | '/next'
+  id: '__root__' | '/' | '/continue' | '/next'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContinueRoute: typeof ContinueRoute
   NextRoute: typeof NextRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/continue': {
+      id: '/continue'
+      path: '/continue'
+      fullPath: '/continue'
+      preLoaderRoute: typeof ContinueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/next': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContinueRoute: ContinueRoute,
   NextRoute: NextRoute,
 }
 export const routeTree = rootRouteImport
