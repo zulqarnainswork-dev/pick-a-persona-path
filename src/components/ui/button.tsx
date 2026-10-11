@@ -17,6 +17,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         character: "gender-card",
+        goal: "goal-card",
+        next: "goal-next-button",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -24,6 +26,7 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
         character: "gender-card-size",
+        goal: "goal-card-size",
       },
     },
     defaultVariants: {
