@@ -28,7 +28,7 @@ function Index() {
       <div className="gender-options">
         {([{ label: "Male", gender: "male", image: male }, { label: "Female", gender: "female", image: female }] as const).map(option => (
           <Button key={option.gender} variant="character" size="character" asChild>
-            <Link to="/next" search={{ gender: option.gender }} aria-label={option.label}>
+            <Link to="/next" search={{ gender: option.gender, goal: undefined }} aria-label={option.label}>
               <span className="character-image"><img src={option.image} width={768} height={1024} alt={`${option.label} fitness athlete`} /></span>
               <span className="character-label">{option.label}</span>
             </Link>
