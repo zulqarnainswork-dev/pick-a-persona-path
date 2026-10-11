@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContinueRouteImport } from './routes/continue'
 import { Route as NextRouteImport } from './routes/next'
+import { Route as ContinueIndexRouteImport } from './routes/continue.index'
+import { Route as ContinueStepRouteImport } from './routes/continue.$step'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,34 +30,50 @@ const NextRoute = NextRouteImport.update({
   path: '/next',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContinueIndexRoute = ContinueIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ContinueRoute,
+} as any)
+const ContinueStepRoute = ContinueStepRouteImport.update({
+  id: '/$step',
+  path: '/$step',
+  getParentRoute: () => ContinueRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/continue': typeof ContinueRoute
+  '/continue': typeof ContinueRouteWithChildren
   '/next': typeof NextRoute
+  '/continue/$step': typeof ContinueStepRoute
+  '/continue/': typeof ContinueIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/continue': typeof ContinueRoute
   '/next': typeof NextRoute
+  '/continue/$step': typeof ContinueStepRoute
+  '/continue': typeof ContinueIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/continue': typeof ContinueRoute
+  '/continue': typeof ContinueRouteWithChildren
   '/next': typeof NextRoute
+  '/continue/$step': typeof ContinueStepRoute
+  '/continue/': typeof ContinueIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/continue' | '/next'
+  fullPaths: '/' | '/continue' | '/next' | '/continue/$step' | '/continue/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/continue' | '/next'
-  id: '__root__' | '/' | '/continue' | '/next'
+  to: '/' | '/next' | '/continue/$step' | '/continue'
+  id:
+    '__root__' | '/' | '/continue' | '/next' | '/continue/$step' | '/continue/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContinueRoute: typeof ContinueRoute
+  ContinueRoute: typeof ContinueRouteWithChildren
   NextRoute: typeof NextRoute
 }
 
@@ -82,12 +100,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NextRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/continue/': {
+      id: '/continue/'
+      path: '/'
+      fullPath: '/continue/'
+      preLoaderRoute: typeof ContinueIndexRouteImport
+      parentRoute: typeof ContinueRoute
+    }
+    '/continue/$step': {
+      id: '/continue/$step'
+      path: '/$step'
+      fullPath: '/continue/$step'
+      preLoaderRoute: typeof ContinueStepRouteImport
+      parentRoute: typeof ContinueRoute
+    }
   }
 }
 
+interface ContinueRouteChildren {
+  ContinueStepRoute: typeof ContinueStepRoute
+  ContinueIndexRoute: typeof ContinueIndexRoute
+}
+
+const ContinueRouteChildren: ContinueRouteChildren = {
+  ContinueStepRoute: ContinueStepRoute,
+  ContinueIndexRoute: ContinueIndexRoute,
+}
+
+const ContinueRouteWithChildren = ContinueRoute._addFileChildren(
+  ContinueRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContinueRoute: ContinueRoute,
+  ContinueRoute: ContinueRouteWithChildren,
   NextRoute: NextRoute,
 }
 export const routeTree = rootRouteImport
