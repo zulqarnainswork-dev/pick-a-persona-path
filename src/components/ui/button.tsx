@@ -19,6 +19,8 @@ const buttonVariants = cva(
         character: "gender-card",
         goal: "goal-card",
         next: "goal-next-button",
+        answer: "question-choice",
+        unit: "question-unit",
       },
       size: {
         default: "h-9 px-4 py-2",
