@@ -112,7 +112,7 @@ import female_calendar_28 from '@/assets/poses/female-calendar-28.jpg';
 import female_calendar_29 from '@/assets/poses/female-calendar-29.jpg';
 import female_calendar_30 from '@/assets/poses/female-calendar-30.jpg';
 import female_calendar_33 from '@/assets/poses/female-calendar-33.jpg';
-import female_calendar_34 from '@/assets/poses/female-calendar-12.jpg';
+import female_calendar_34 from '@/assets/poses/female-onboarding-16.jpg';
 import female_calendar_35 from '@/assets/poses/female-onboarding-17.jpg';
 export const characterPoses = {
   male: {
