@@ -275,7 +275,7 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .question-choice[aria-pressed="true"] .question-check { border-color: var(--goal-accent); background: var(--goal-accent); color: var(--goal-accent-foreground); }
 .question-choice-illustrated { min-height: 115px; padding-right: 112px; }
 .question-choice-illustrated .question-check { position: absolute; right: 10px; top: 10px; }
-.question-choice-art { position: absolute; right: 0; top: 0; width: 104px; height: 100%; object-fit: cover; object-position: center 28%; mix-blend-mode: multiply; }
+.question-choice-art { position: absolute; right: 0; top: 0; width: 104px; height: 100%; object-fit: cover; object-position: center 28%; mix-blend-mode: normal; }
 .question-footer { margin: 0; padding-top: 12px; }
 .question-footer .goal-next-button { height: 56px; font-size: 21px; border-radius: 8px; gap: 14px; }
 .question-footer .goal-next-button svg { width: 20px; height: 20px; }
@@ -415,7 +415,7 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .goal-art, .question-choice-art, .question-portrait, .question-banner, .question-complete > img, .plan-summary > img { object-fit: contain; object-position: center; }
 .goal-art, .question-choice-art { padding: 7px; }
 .plan-summary > img { right: 5px; mask-image: none; padding: 8px; }
-.plan-day > img { height: calc(100% - 55px); top: 5px; bottom: auto; width: 43%; right: 5px; mask-image: none; mix-blend-mode: multiply; }
+.plan-day > img { height: calc(100% - 55px); top: 5px; bottom: auto; width: 43%; right: 5px; mask-image: none; mix-blend-mode: normal; }
 .plan-day { height: 210px; border-radius: 8px; }
 .plan-day-current { height: 235px; }
 .plan-day-current > img { height: calc(100% - 65px); bottom: auto; }
