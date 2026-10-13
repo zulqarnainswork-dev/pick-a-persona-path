@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { ArrowLeft, ArrowRight, Check, Leaf, ListChecks, X, Zap, Circle, Undo2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Leaf, ListChecks, Zap, Circle, Undo2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useQuestionnaire } from './questionnaire-context';
 import { questions, isValidAnswer } from '@/lib/questionnaire';
 import { goals, type Gender, type GoalId } from '@/lib/goals';
@@ -15,7 +14,6 @@ export function FitnessPlan({ gender, goal }: { gender: Gender; goal: GoalId }) 
   const complete = questions.every(question => isValidAnswer(question, answers[question.id]));
   const [progress, setProgress] = useState(1);
   const [ready, setReady] = useState(false);
-  const [open, setOpen] = useState(false);
   const saved = usePlanProgress(`${gender}:${goal}`);
   const finished = Math.round(saved.days.length / 30 * 100);
   const currentDay = planDays.find(item => !saved.days.includes(item.day))?.day;
@@ -25,13 +23,15 @@ export function FitnessPlan({ gender, goal }: { gender: Gender; goal: GoalId }) 
     const finish = window.setTimeout(() => { window.clearInterval(interval); setReady(true); window.scrollTo(0, 0); }, 4900);
     return () => { window.clearInterval(interval); window.clearTimeout(finish); };
   }, [complete]);
+  const returning = !complete && saved.loaded && saved.days.length > 0;
   const selected = goals.find(item => item.id === goal);
   const level = planLevel(answers);
   const startImage = characterPoses[gender].loading;
 
-  if (!complete) return <main className="goal-page question-page"><div className="question-complete"><h1>Complete your profile</h1><Button variant="next" asChild><Link to="/continue" search={{ gender, goal }}>Continue<ArrowRight /></Link></Button></div></main>;
+  if (!complete && !saved.loaded && !saved.error) return <main className="plan-loading"><p role="status">Loading saved progress…</p></main>;
+  if (!complete && !returning) return <main className="goal-page question-page"><div className="question-complete"><h1>Complete your profile</h1><Button variant="next" asChild><Link to="/continue" search={{ gender, goal }}>Continue<ArrowRight /></Link></Button></div></main>;
 
-  if (!ready) return <main className="plan-loading" aria-busy="true">
+  if (!ready && !returning) return <main className="plan-loading" aria-busy="true">
     <img src={startImage} alt="Your fitness coach" width={768} height={1024} />
     <h1>Preparing your journey</h1><p>{selected?.label} · {level.label}</p>
     <div className="plan-loading-number" role="progressbar" aria-label="Preparing your plan" aria-valuemin={1} aria-valuemax={100} aria-valuenow={progress}>{progress}<span>%</span></div>
@@ -43,7 +43,7 @@ export function FitnessPlan({ gender, goal }: { gender: Gender; goal: GoalId }) 
     <header className="plan-heading"><Button variant="ghost" size="icon" asChild><Link to="/continue/$step" params={{ step: 'time' }} search={{ gender, goal }} aria-label="Review workout time" title="Review workout time"><ArrowLeft /></Link></Button><span>YOUR FITNESS JOURNEY</span></header>
     <h1>{selected?.label}<span>30-day plan</span></h1>
     <section className="plan-summary" aria-label="Your plan overview">
-      <div className="plan-summary-copy"><div className="plan-intensity" aria-label={`${level.label} fitness level`}>{[1, 2, 3].map(value => <Zap key={value} className={value <= level.intensity ? 'is-active' : ''} />)}</div><h2>{level.label}</h2><div className="plan-finished"><span>{finished}% Finished</span><progress value={saved.days.length} max={30} aria-label="Plan completion" /></div><p className="plan-progress-detail">{saved.days.length} / 30 days completed</p></div>
+      <div className="plan-summary-copy">{complete && <div className="plan-intensity" aria-label={`${level.label} fitness level`}>{[1, 2, 3].map(value => <Zap key={value} className={value <= level.intensity ? 'is-active' : ''} />)}</div>}<h2>{complete ? level.label : 'Your progress'}</h2><div className="plan-finished"><span>{finished}% Finished</span><progress value={saved.days.length} max={30} aria-label="Plan completion" /></div><p className="plan-progress-detail">{saved.days.length} / 30 days completed</p></div>
       <img src={characterPoses[gender].summary} alt={`${selected?.label} fitness character`} width={384} height={512} />
     </section>
     <div className="plan-progress-grid" aria-label="30-day progress">{planDays.map(({ day }) => <span key={day} className={saved.days.includes(day) ? 'is-done' : ''} aria-label={`Day ${day}: ${saved.days.includes(day) ? 'completed' : 'not completed'}`}>{day}</span>)}</div>
@@ -59,6 +59,5 @@ export function FitnessPlan({ gender, goal }: { gender: Gender; goal: GoalId }) 
       </li>)}</ol>
     </section>)}
     <div className="plan-end"><ListChecks /><span>Your 30-day journey</span></div>
-    <Dialog open={open} onOpenChange={setOpen}><DialogContent><DialogHeader><DialogTitle>Day 1</DialogTitle><DialogDescription>Your exercise routine is not available yet.</DialogDescription></DialogHeader><Button variant="outline" onClick={() => setOpen(false)}><X />Back to plan</Button></DialogContent></Dialog>
   </main>;
 }
