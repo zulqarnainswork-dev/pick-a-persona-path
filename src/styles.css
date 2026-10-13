@@ -275,7 +275,7 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .question-choice[aria-pressed="true"] .question-check { border-color: var(--goal-accent); background: var(--goal-accent); color: var(--goal-accent-foreground); }
 .question-choice-illustrated { min-height: 115px; padding-right: 112px; }
 .question-choice-illustrated .question-check { position: absolute; right: 10px; top: 10px; }
-.question-choice-art { position: absolute; right: 0; top: 0; width: 104px; height: 100%; object-fit: cover; object-position: center 28%; mix-blend-mode: multiply; }
+.question-choice-art { position: absolute; right: 0; top: 0; width: 104px; height: 100%; object-fit: cover; object-position: center 28%; mix-blend-mode: normal; }
 .question-footer { margin: 0; padding-top: 12px; }
 .question-footer .goal-next-button { height: 56px; font-size: 21px; border-radius: 8px; gap: 14px; }
 .question-footer .goal-next-button svg { width: 20px; height: 20px; }
@@ -408,3 +408,25 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
   .plan-day-current > img { height: 235px; bottom: 50px; }
   .plan-start-button { height: 56px; font-size: 28px; }
 }
+
+/* Full-figure framing: image bounds never hide the athlete. */
+.character-image { top: -35px; height: calc(100% - 10px); overflow: visible; mask-image: none; }
+.character-image img { position: static; width: 100%; height: 100%; max-width: 100%; object-fit: contain; }
+.goal-art, .question-choice-art, .question-portrait, .question-banner, .question-complete > img, .plan-summary > img { object-fit: contain; object-position: center; }
+.goal-art, .question-choice-art { padding: 7px; }
+.plan-summary > img { right: 5px; mask-image: none; padding: 8px; }
+.plan-day > img { height: calc(100% - 55px); top: 5px; bottom: auto; width: 43%; right: 5px; mask-image: none; mix-blend-mode: normal; }
+.plan-day { height: 210px; border-radius: 8px; }
+.plan-day-current { height: 235px; }
+.plan-day-current > img { height: calc(100% - 65px); bottom: auto; }
+.plan-day-copy { width: 57%; padding: 20px 16px; }
+.plan-complete-button { position: absolute; bottom: 12px; left: 12px; right: 12px; width: calc(100% - 24px); height: 36px; z-index: 3; background: var(--background); color: var(--plan-ink); border-color: var(--plan-line); font-size: 13px; gap: 7px; }
+.plan-day-done { background: var(--plan-rest); }
+.plan-day-done .plan-complete-button { color: var(--plan-teal); border-color: var(--plan-teal); }
+.plan-progress-detail { margin-top: 8px; font-size: 12px; color: var(--plan-muted); }
+.plan-save-status { min-height: 20px; font-size: 12px; margin: 12px 0; color: var(--plan-muted); }
+.plan-save-error { color: var(--destructive); }
+.plan-progress-grid { display: grid; grid-template-columns: repeat(10, minmax(0,1fr)); gap: 6px; margin: 14px 0 6px; }
+.plan-progress-grid > span { aspect-ratio: 1; display: grid; place-items: center; font-size: 11px; border-radius: 4px; background: var(--plan-aqua); color: var(--plan-ink); }
+.plan-progress-grid > .is-done { background: var(--plan-teal); color: var(--plan-on-teal); }
+@media (min-width: 600px) { .plan-day { height: 240px; } .plan-day-current { height: 270px; } }

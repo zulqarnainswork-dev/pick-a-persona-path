@@ -14,3 +14,5 @@
 - Keep goal definitions and gender-specific illustration mappings in browser-safe library modules; use dedicated Button goal and next variants so all choices share styling and accessible single-selection states.
 - Keep questionnaire definitions and answer validation in a browser-safe module, with shared question rendering and layout-scoped React state; this presentation-only flow retains answers across question navigation without storing sensitive health or body measurements in URLs or persistent storage.
 - Render the presentation-only plan and simulated preparation at the questionnaire completion child, using the existing scoped answers; keep day scheduling in a browser-safe module and do not imply that exercise generation exists.
+- Assign illustration assets to distinct screen slots in the browser-safe character pose module; full-figure contain framing prevents repeated category art and clipping.
+- Persist only day completion in Cloud through server functions scoped by a server-issued HttpOnly device capability; deny direct Data API access and keep questionnaire answers in memory to avoid storing sensitive measurements.
