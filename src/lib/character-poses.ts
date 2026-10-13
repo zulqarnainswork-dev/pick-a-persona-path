@@ -112,8 +112,8 @@ import female_calendar_28 from '@/assets/poses/female-calendar-28.jpg';
 import female_calendar_29 from '@/assets/poses/female-calendar-29.jpg';
 import female_calendar_30 from '@/assets/poses/female-calendar-30.jpg';
 import female_calendar_33 from '@/assets/poses/female-calendar-33.jpg';
-import female_calendar_34 from '@/assets/poses/female-calendar-34.jpg';
-import female_calendar_35 from '@/assets/poses/female-calendar-35.jpg';
+import female_calendar_34 from '@/assets/poses/female-calendar-12.jpg';
+import female_calendar_35 from '@/assets/poses/female-onboarding-17.jpg';
 export const characterPoses = {
   male: {
     goals: {'abs': male_onboarding_2, 'weight-loss': male_onboarding_3, 'weight-gain': male_onboarding_4, 'strength': male_onboarding_13, 'keep-fit': male_onboarding_34, 'chest': male_onboarding_31, 'flexibility': male_onboarding_8, 'hiit': male_onboarding_9, 'posture': male_onboarding_10, 'v-taper': male_onboarding_11, 'kegel': male_onboarding_30},
