@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import male from "@/assets/male-athlete.png";
-import female from "@/assets/female-athlete.png";
+import { characterPoses } from "@/lib/character-poses";
+const male = characterPoses.male.questions.gender;
+const female = characterPoses.female.questions.gender;
 import robot from "@/assets/robot.png";
 
 export const Route = createFileRoute("/")({

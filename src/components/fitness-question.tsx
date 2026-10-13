@@ -6,9 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useQuestionnaire } from './questionnaire-context';
 import { isValidAnswer, questions, toggleHealthAnswer, type Question } from '@/lib/questionnaire';
 import { goals, type Gender, type GoalId } from '@/lib/goals';
-import { goalImages } from '@/lib/goal-images';
-import maleEquipment from '@/assets/male-equipment.jpg';
-import femaleEquipment from '@/assets/female-equipment.jpg';
+import { questionImage } from '@/lib/character-poses';
 
 export function questionHead(question?: Question) {
   const title = `${question?.title ?? 'Your 30-Day Plan'} — Fitness Journey`;
@@ -26,7 +24,6 @@ export function FitnessQuestion({ index, gender, goal }: { index: number; gender
   const valid = isValidAnswer(question, value);
   const selected = Array.isArray(value) ? value : value ? [value] : [];
   const progress = Math.round(((index + 2) / 11) * 100);
-  const art = (image: GoalId | 'equipment') => image === 'equipment' ? (gender === 'female' ? femaleEquipment : maleEquipment) : goalImages[gender][image];
   const back = () => {
     if (index === 0) { void navigate({ to: '/next', search: { gender, goal } }); return; }
     if (index === 1) { void navigate({ to: '/continue', search: { gender, goal } }); return; }
@@ -45,7 +42,7 @@ export function FitnessQuestion({ index, gender, goal }: { index: number; gender
     <div className="goal-intro question-intro"><h1>{question.title}</h1><p>{question.description}</p></div>
     <div className="question-body">
       {numeric ? <>
-        <img className="question-portrait" src={art(question.image)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />
+        <img className="question-portrait" src={questionImage(gender, question.id)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />
         <div className="measurement-panel">
           {question.id !== 'age' && <div className="question-units" role="group" aria-label="Measurement unit">
             <Button variant="unit" aria-pressed={!imperial} onClick={() => setUnit('metric')}>{numeric.unit}</Button>
@@ -59,12 +56,12 @@ export function FitnessQuestion({ index, gender, goal }: { index: number; gender
           <p id={`${question.id}-range`} className={`measurement-hint ${value && !valid ? 'text-destructive' : ''}`}>{numeric.min}–{numeric.max} {numeric.unit}{question.id === 'age' ? ', whole years' : ''}</p>
         </div>
       </> : <>
-        {!question.options?.some(option => option.image) && <img className="question-banner" src={art(question.image)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />}
+        {!question.options?.some(option => option.image) && <img className="question-banner" src={questionImage(gender, question.id)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />}
         <div className="question-options" role="group" aria-label={question.title}>
           {question.options?.map(option => <Button key={option.id} variant="answer" aria-pressed={selected.includes(option.id)} className={option.image ? 'question-choice-illustrated' : ''} onClick={() => setAnswer(question.id, question.multiple ? toggleHealthAnswer(Array.isArray(value) ? value : [], option.id) : option.id)}>
             {question.id === 'time' && <Clock3 className="question-time-icon" aria-hidden="true" />}
             <span className="question-choice-copy"><span className="question-choice-label">{option.label}</span>{option.detail && <span className="question-choice-detail">{option.detail}</span>}</span>
-            {option.image && <img className="question-choice-art" src={art(option.image)} alt="" width={384} height={512} />}
+            {option.image && <img className="question-choice-art" src={questionImage(gender, question.id, option.id)} alt="" width={384} height={512} />}
             <span className={`question-check ${question.multiple ? 'question-check-square' : ''}`}>{selected.includes(option.id) && <Check aria-hidden="true" />}</span>
           </Button>)}
         </div>
@@ -85,7 +82,7 @@ export function QuestionnaireComplete({ gender, goal }: { gender: Gender; goal: 
   const selected = goals.find(item => item.id === goal);
   return <main className="goal-page question-page">
     <header className="goal-header"><Button variant="ghost" size="icon" className="goal-back" asChild><Link to="/continue/$step" params={{ step: 'time' }} search={{ gender, goal }} aria-label="Go back" title="Go back"><ArrowLeft /></Link></Button><div className="question-step">YOUR FITNESS PROFILE</div></header>
-    <div className="question-complete"><span className="question-complete-check"><Check /></span><h1>{complete ? 'All questions answered' : 'Complete your profile'}</h1><img src={goalImages[gender][goal]} alt="Fitness character" width={384} height={512} /><h2>{selected?.label}</h2>
+    <div className="question-complete"><span className="question-complete-check"><Check /></span><h1>{complete ? 'All questions answered' : 'Complete your profile'}</h1><img src={questionImage(gender, 'complete')} alt="Fitness character" width={384} height={512} /><h2>{selected?.label}</h2>
       {complete ? <><p className="question-complete-detail">{answers['time']} {answers['time'] === '60' ? 'minutes or more' : 'minutes'} a day</p><Button variant="outline" asChild><Link to="/continue" search={{ gender, goal }}>Review answers</Link></Button></> : <Button variant="next" asChild><Link to="/continue" search={{ gender, goal }}>Continue</Link></Button>}
     </div>
   </main>;
