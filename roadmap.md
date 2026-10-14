@@ -1,4 +1,6 @@
 # Goal selection
+- [ ] Enlarge goal athletes and match the reference card placement while retaining approved colors.
+- [ ] Verify revised goal cards and selection on mobile and desktop.
 - [x] Create matching goal illustrations for male and female profiles.
 - [x] Build scrollable single-goal selection and Next navigation.
 - [x] Verify both gender flows and the next-page placeholder.
