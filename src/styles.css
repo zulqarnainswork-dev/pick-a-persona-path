@@ -430,3 +430,61 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .plan-progress-grid > span { aspect-ratio: 1; display: grid; place-items: center; font-size: 11px; border-radius: 4px; background: var(--plan-aqua); color: var(--plan-ink); }
 .plan-progress-grid > .is-done { background: var(--plan-teal); color: var(--plan-on-teal); }
 @media (min-width: 600px) { .plan-day { height: 240px; } .plan-day-current { height: 270px; } }
+
+/* Goal showcase palette, scoped to the goal selector only. */
+:root {
+  --goal-on-color: oklch(1 0 0);
+  --goal-core: oklch(0.40 0.16 294);
+  --goal-weight-loss: oklch(0.49 0.16 42);
+  --goal-weight-gain: oklch(0.39 0.11 240);
+  --goal-strength: oklch(0.44 0.14 258);
+  --goal-active: oklch(0.41 0.10 165);
+  --goal-chest: oklch(0.43 0.16 15);
+  --goal-flex: oklch(0.43 0.11 192);
+  --goal-hiit: oklch(0.43 0.17 28);
+  --goal-posture: oklch(0.41 0.08 150);
+  --goal-taper: oklch(0.41 0.13 270);
+  --goal-pelvic: oklch(0.44 0.07 228);
+  --goal-card-highlight: oklch(1 0 0 / 7%);
+  --goal-card-outline: oklch(1 0 0 / 60%);
+}
+.goal-showcase .goal-options { margin-top: 30px; gap: 24px; }
+.goal-theme-abs { --goal-card-color: var(--goal-core); }
+.goal-theme-weight-loss { --goal-card-color: var(--goal-weight-loss); }
+.goal-theme-weight-gain { --goal-card-color: var(--goal-weight-gain); }
+.goal-theme-strength { --goal-card-color: var(--goal-strength); }
+.goal-theme-keep-fit { --goal-card-color: var(--goal-active); }
+.goal-theme-chest { --goal-card-color: var(--goal-chest); }
+.goal-theme-flexibility { --goal-card-color: var(--goal-flex); }
+.goal-theme-hiit { --goal-card-color: var(--goal-hiit); }
+.goal-theme-posture { --goal-card-color: var(--goal-posture); }
+.goal-theme-v-taper { --goal-card-color: var(--goal-taper); }
+.goal-theme-kegel { --goal-card-color: var(--goal-pelvic); }
+.goal-showcase .goal-card {
+  display: block; height: 320px; min-height: 320px; padding: 22px 18px;
+  border-radius: 8px; background: var(--goal-card-color); color: var(--goal-on-color);
+  border: 2px solid transparent; isolation: isolate; transition: border-color 160ms, transform 160ms;
+}
+.goal-showcase .goal-card::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--goal-card-highlight); clip-path: polygon(55% 0,100% 0,100% 35%,25% 100%,0 100%,0 85%); }
+.goal-showcase .goal-card:hover { border-color: var(--goal-card-outline); }
+.goal-showcase .goal-card[aria-pressed="true"] { background: var(--goal-card-color); border-color: var(--foreground); }
+.goal-card-heading { position: absolute; left: 18px; top: 25px; width: 54%; z-index: 2; }
+.goal-card-eyebrow { display: block; font-size: 10px; line-height: 1.4; font-weight: 800; margin-bottom: 13px; }
+.goal-showcase .goal-label { display: block; width: 100%; font-size: 25px; line-height: 1.12; text-transform: uppercase; overflow-wrap: normal; }
+.goal-showcase .goal-art { width: 42%; height: 165px; top: 8px; right: 6px; bottom: auto; padding: 3px; object-fit: contain; mix-blend-mode: multiply; border-radius: 6px; }
+.goal-card-message { position: absolute; left: 18px; right: 18px; top: 183px; z-index: 2; text-align: left; }
+.goal-card-quote { display: block; font-size: 16px; font-weight: 900; line-height: 1.3; }
+.goal-card-description { display: block; font-size: 13px; line-height: 1.4; font-weight: 600; margin-top: 5px; }
+.goal-card-select { display: flex; align-items: center; justify-content: center; position: absolute; bottom: 17px; left: 18px; right: 18px; height: 42px; border-radius: 24px; color: var(--goal-card-color); background: var(--goal-on-color); font-size: 14px; font-weight: 1000; padding: 0 35px 0 10px; }
+.goal-card-select > span { position: absolute; right: 11px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; color: var(--goal-on-color); background: var(--goal-card-color); }
+@media (min-width: 600px) {
+  .goal-showcase .goal-card { height: 350px; min-height: 350px; }
+  .goal-card-heading { left: 25px; top: 30px; }
+  .goal-showcase .goal-label { font-size: 32px; }
+  .goal-showcase .goal-art { height: 195px; }
+  .goal-card-message { left: 25px; right: 25px; top: 215px; }
+  .goal-card-quote { font-size: 19px; }
+  .goal-card-description { font-size: 15px; }
+  .goal-card-select { left: 25px; right: 25px; font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .goal-showcase .goal-card { transition: none; } }
