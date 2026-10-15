@@ -1,4 +1,6 @@
 # Goal selection
+- [ ] Match October 15 references: landscape proportions, oversized titles, zoomed and faded athletes, and goal-specific colors.
+- [ ] Verify all goal cards and selection for both genders at mobile and desktop sizes.
 - [x] Enlarge goal athletes and match the reference card placement while retaining approved colors.
 - [x] Verify revised goal cards and selection on mobile and desktop.
 - [x] Create matching goal illustrations for male and female profiles.
