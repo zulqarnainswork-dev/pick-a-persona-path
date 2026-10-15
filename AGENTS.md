@@ -13,6 +13,7 @@
 - Use global semantic tokens and named onboarding classes in `src/styles.css`, with a dedicated Button character variant, so both choices share consistent styling.
 - Keep goal definitions and gender-specific illustration mappings in browser-safe library modules; use dedicated Button goal and next variants so all choices share styling and accessible single-selection states.
 - Use goal-only transparent asset derivatives in the goal image mapping so athletes composite naturally over card colors without altering images used by other screens.
+- Frame goal athletes in a dedicated masked image layer with lower-body fade and proportion-based card tracks; this supports enlarged reference-style portraits without affecting full-figure framing elsewhere.
 - Keep questionnaire definitions and answer validation in a browser-safe module, with shared question rendering and layout-scoped React state; this presentation-only flow retains answers across question navigation without storing sensitive health or body measurements in URLs or persistent storage.
 - Render the presentation-only plan and simulated preparation at the questionnaire completion child, using the existing scoped answers; keep day scheduling in a browser-safe module and do not imply that exercise generation exists.
 - Assign illustration assets to distinct screen slots in the browser-safe character pose module; full-figure contain framing prevents repeated category art and clipping.
