@@ -295,17 +295,19 @@ body { margin: 0; font-family: var(--font-app); letter-spacing: 0; }
 .question-health .question-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .question-health .health-choice { display: block; padding: 15px 12px 0; height: 234px; min-height: 234px; border-radius: 8px; background: var(--coach-surface); }
 .question-health .health-choice[aria-pressed="true"] { background: var(--goal-selected-surface); }
-.question-health .question-choice-copy { position: relative; z-index: 2; padding-right: 9px; }
+.question-health .question-choice-copy { position: absolute; left: 12px; right: 12px; top: 15px; z-index: 2; padding-right: 0; }
 .question-health .question-choice-label { font-size: 16px; line-height: 1.22; font-weight: 900; }
 .health-choice-art { position: absolute; bottom: 0; left: 0; width: 100%; height: 68%; object-fit: contain; object-position: center bottom; }
 .question-health .question-check { position: absolute; right: 7px; bottom: 7px; }
 @media (min-width: 600px) {
   .question-health .health-choice { height: 300px; padding: 20px 18px 0; }
+  .question-health .question-choice-copy { left: 18px; right: 18px; top: 20px; }
   .question-health .question-choice-label { font-size: 21px; }
   .question-health .question-options { gap: 16px; }
 }
 @media (max-width: 359px) {
   .question-health .health-choice { height: 224px; min-height: 224px; padding: 12px 9px 0; }
+  .question-health .question-choice-copy { left: 9px; right: 9px; top: 12px; }
   .question-health .question-choice-label { font-size: 14px; }
 }
 .health-note { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.45; color: var(--goal-description); margin: 17px 2px 0; }
