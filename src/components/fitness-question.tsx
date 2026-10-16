@@ -7,6 +7,7 @@ import { useQuestionnaire } from './questionnaire-context';
 import { isValidAnswer, questions, toggleHealthAnswer, type Question } from '@/lib/questionnaire';
 import { goals, type Gender, type GoalId } from '@/lib/goals';
 import { questionImage } from '@/lib/character-poses';
+import { healthImage } from '@/lib/health-images';
 
 export function questionHead(question?: Question) {
   const title = `${question?.title ?? 'Your 30-Day Plan'} — Fitness Journey`;
@@ -56,12 +57,13 @@ export function FitnessQuestion({ index, gender, goal }: { index: number; gender
           <p id={`${question.id}-range`} className={`measurement-hint ${value && !valid ? 'text-destructive' : ''}`}>{numeric.min}–{numeric.max} {numeric.unit}{question.id === 'age' ? ', whole years' : ''}</p>
         </div>
       </> : <>
-        {!question.options?.some(option => option.image) && <img className="question-banner" src={questionImage(gender, question.id)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />}
+        {question.id !== 'health' && !question.options?.some(option => option.image) && <img className="question-banner" src={questionImage(gender, question.id)} alt={`${gender === 'male' ? 'Male' : 'Female'} fitness character`} width={384} height={512} />}
         <div className="question-options" role="group" aria-label={question.title}>
-          {question.options?.map(option => <Button key={option.id} variant="answer" aria-pressed={selected.includes(option.id)} className={option.image ? 'question-choice-illustrated' : ''} onClick={() => setAnswer(question.id, question.multiple ? toggleHealthAnswer(Array.isArray(value) ? value : [], option.id) : option.id)}>
+          {question.options?.map(option => <Button key={option.id} variant="answer" aria-pressed={selected.includes(option.id)} className={question.id === 'health' ? 'health-choice' : option.image ? 'question-choice-illustrated' : ''} onClick={() => setAnswer(question.id, question.multiple ? toggleHealthAnswer(Array.isArray(value) ? value : [], option.id) : option.id)}>
             {question.id === 'time' && <Clock3 className="question-time-icon" aria-hidden="true" />}
             <span className="question-choice-copy"><span className="question-choice-label">{option.label}</span>{option.detail && <span className="question-choice-detail">{option.detail}</span>}</span>
             {option.image && <img className="question-choice-art" src={questionImage(gender, question.id, option.id)} alt="" width={384} height={512} />}
+            {question.id === 'health' && <img className="health-choice-art" src={healthImage(gender, option.id)} alt="" width={300} height={400} />}
             <span className={`question-check ${question.multiple ? 'question-check-square' : ''}`}>{selected.includes(option.id) && <Check aria-hidden="true" />}</span>
           </Button>)}
         </div>
