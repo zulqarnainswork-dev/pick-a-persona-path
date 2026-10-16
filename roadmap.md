@@ -1,6 +1,6 @@
 # Goal selection
-- [ ] Remove white patches and give all goals distinct characters, clothes and poses with enlarged framing; male abs shirtless.
-- [ ] Verify transparent illustrations and goal selection on mobile and desktop.
+- [x] Remove white patches and give all goals distinct characters, clothes and poses with enlarged framing; male abs shirtless.
+- [x] Verify transparent illustrations and goal selection on mobile and desktop.
 - [x] Match October 15 references: landscape proportions, oversized titles, zoomed and faded athletes, and goal-specific colors.
 - [x] Verify all goal cards and selection for both genders at mobile and desktop sizes.
 - [x] Enlarge goal athletes and match the reference card placement while retaining approved colors.
