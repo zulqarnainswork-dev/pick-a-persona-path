@@ -10,6 +10,8 @@
 - [x] Verify both gender flows and the next-page placeholder.
 
 # Personal fitness questions
+- [ ] Redesign health concerns as reference-style illustrated two-column choices.
+- [ ] Verify health selection, exclusivity, retained answers and Next for both profiles.
 - [x] Create nine illustrated question screens after goal selection.
 - [x] Retain and validate answers through Next and Back navigation.
 - [x] Verify both profile flows, numeric fields, health choices, and final time selection.
